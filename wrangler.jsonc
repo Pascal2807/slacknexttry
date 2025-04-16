@@ -2,24 +2,26 @@
  * For more details on how to configure Wrangler, refer to:
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
-{
+ {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "slacknexttry",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-04-01",
+	"compatibility_flags": ["nodejs_compat"],
 	"observability": {
-		"enabled": true
+	  "enabled": true
 	},
 	"dev": {
-		"port": 8789
+	  "port": 8789
 	},
 	"kv_namespaces": [
-    {
-      "binding": "OAUTH_KV",
-      "id": "8644481116de421f847069150f5f644f"
-    }
-  ]
-}
+	  {
+		"binding": "OAUTH_KV",
+		"id": "8644481116de421f847069150f5f644f"
+	  }
+	]
+  }
+  
 
 /**
 *
