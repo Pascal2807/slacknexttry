@@ -4,7 +4,17 @@ import { faker } from "@faker-js/faker";
 import { jwt, requireScope } from "./middlewares/jwt";
 import type { JWTHeaderParameters, JWTPayload } from "jose";
 
+type Bindings = {
+	AUTH0_DOMAIN: string;
+	AUTH0_CLIENT_ID: string;
+	AUTH0_CLIENT_SECRET: string;
+	AUTH0_AUDIENCE: string;
+	AUTH0_SCOPE: string;
+	API_BASE_URL: string;
+  };
+
 const app = new Hono<{
+	Bindings: Bindings;
 	Variables: {
 		jwtPayload: JWTPayload;
 		jwtProtectedHeader: JWTHeaderParameters;
@@ -15,7 +25,14 @@ const app = new Hono<{
  * GET /api/health
  * Basic health check endpoint.
  */
-app.get("/api/health", (c) => c.json({ status: "ok", timestamp: new Date().toISOString() }));
+app.get("/api/health", async (c) => {
+	console.error("DEBUG AUTH0_DOMAIN:", c.env.AUTH0_DOMAIN);
+	return c.json({
+	  status: "ok",
+	  domain: c.env.AUTH0_DOMAIN,
+	  timestamp: new Date().toISOString(),
+	});
+  });
 
 /**
  * Middleware to verify the JWT token.

@@ -12,5 +12,23 @@
 	},
 	"dev": {
 		"port": 8789
-	}
+	},
+	"kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "8644481116de421f847069150f5f644f"
+    }
+  ]
 }
+
+/**
+*
+*{
+  "kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "8644481116de421f847069150f5f644f"
+    }
+  ]
+}
+**/
